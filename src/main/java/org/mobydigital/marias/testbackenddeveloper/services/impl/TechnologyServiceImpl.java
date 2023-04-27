@@ -53,6 +53,8 @@ public class TechnologyServiceImpl implements TechnologyService {
     public void updateTechnology(Long id, Technology technology) {
         technologyRepository.findById(id)
                 .ifPresentOrElse(technologyFind -> {
+                    if(technology.getName() != null && !technology.getName().isBlank()) technologyFind.setName(technology.getName());
+                    if(technology.getVersion() != null && !technology.getVersion().isBlank()) technologyFind.setVersion(technology.getVersion());
                     technologyRepository.save(technologyFind);
                 },()->{
                     log.error(ID_NOT_FOUND+id);

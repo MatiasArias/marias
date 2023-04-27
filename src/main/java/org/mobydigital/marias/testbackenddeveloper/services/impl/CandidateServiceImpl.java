@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.yaml.snakeyaml.events.Event;
 
+import java.sql.SQLOutput;
 import java.util.List;
 @Service
 @Slf4j
@@ -55,6 +56,11 @@ public class CandidateServiceImpl implements CandidateService {
     public void updateCandidate(Long id, Candidate candidate) {
         candidateRepository.findById(id)
                 .ifPresentOrElse(candidateFind->{
+                    if(candidate.getName() != null && !candidate.getName().isBlank()) candidateFind.setName(candidate.getName());
+                    if(candidate.getLastname() != null && !candidate.getLastname().isBlank()) candidateFind.setLastname(candidate.getLastname());
+                    if(candidate.getBirthday() != null) candidateFind.setBirthday(candidate.getBirthday());
+                    if(candidate.getDocumentType() != null ) candidateFind.setDocumentType(candidate.getDocumentType());
+                    if(candidate.getDocumentNumber() != null && candidate.getDocumentNumber()>0)candidateFind.setDocumentNumber(candidate.getDocumentNumber());
             candidateRepository.save(candidateFind);
         },()->{
             log.error(ID_NOT_FOUND+id);
