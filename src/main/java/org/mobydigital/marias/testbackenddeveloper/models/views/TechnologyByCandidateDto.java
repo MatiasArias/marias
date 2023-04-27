@@ -7,8 +7,8 @@ import lombok.*;
 @NoArgsConstructor
 @Getter
 @Setter
-public class TecnologyByCandidateDto {
-    private Long id_candidate;
-    private Long id_technology;
+public class TechnologyByCandidateDto {
+    private Long idCandidate;
+    private Long idTechnology;
     private Integer yearsOfExperience;
 }
