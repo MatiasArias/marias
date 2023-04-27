@@ -27,6 +27,7 @@ public class CandidateServiceImpl implements CandidateService {
     public Candidate createCandidate(Candidate candidate) {
         checkCreateCandidate(candidate);
         candidateRepository.save(candidate);
+        log.info(String.format("Candidate %s created successfully ",candidate.getName()));
         return candidate;
     }
 
@@ -40,6 +41,7 @@ public class CandidateServiceImpl implements CandidateService {
         candidateRepository.findById(id)
                 .ifPresentOrElse(candidateFind->{
                     candidateRepository.delete(candidateFind);
+                    log.info("Technology by Candidate deleted successfully");
                 },()->{
                     log.error(ID_NOT_FOUND+id);
                     throw new EntityNotFoundException(ID_NOT_FOUND+id);
@@ -67,6 +69,7 @@ public class CandidateServiceImpl implements CandidateService {
                     if(candidate.getDocumentType() != null ) candidateFind.setDocumentType(candidate.getDocumentType());
                     if(candidate.getDocumentNumber() != null && candidate.getDocumentNumber()>0)candidateFind.setDocumentNumber(candidate.getDocumentNumber());
             candidateRepository.save(candidateFind);
+            log.info(String.format("Candidate %s updated successfully ",candidateFind.getName()));
         },()->{
             log.error(ID_NOT_FOUND+id);
             throw new EntityNotFoundException(ID_NOT_FOUND+id);

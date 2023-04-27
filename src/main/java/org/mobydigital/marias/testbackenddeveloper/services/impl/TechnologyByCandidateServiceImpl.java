@@ -33,6 +33,7 @@ public class TechnologyByCandidateServiceImpl implements TechnologyByCandidateSe
         technologyByCandidate.setTechnology(technologyService.getTechnologyById(technologyByCandidateDto.getIdTechnology()));
         technologyByCandidate.setYearsOfExperience(technologyByCandidateDto.getYearsOfExperience());
         technologyByCandidateRepository.save(technologyByCandidate);
+        log.info(String.format("Technology by Candidate created successfully"));
         return technologyByCandidate;
     }
 
@@ -48,6 +49,7 @@ public class TechnologyByCandidateServiceImpl implements TechnologyByCandidateSe
         technologyByCandidateRepository.findById(id)
                 .ifPresentOrElse(technologyFind->{
                     technologyByCandidateRepository.delete(technologyFind);
+                    log.info("Technology by Candidate deleted successfully");
                 },()->{
                     log.error(ID_NOT_FOUND+id);
                     throw new EntityNotFoundException(ID_NOT_FOUND+id);
@@ -78,6 +80,7 @@ public class TechnologyByCandidateServiceImpl implements TechnologyByCandidateSe
                         technologyFind.setYearsOfExperience(technologyByCandidate.getYearsOfExperience());
                     }
                     technologyByCandidateRepository.save(technologyFind);
+                    log.info(String.format("Technology by Candidate created successfully"));
                 },()->{
                     log.error(ID_NOT_FOUND+id);
                     throw new EntityNotFoundException(ID_NOT_FOUND+id);
