@@ -20,6 +20,7 @@ public class TechnologyServiceImpl implements TechnologyService {
     @Override
     public Technology createTechnology(Technology technology) {
         technologyRepository.save(technology);
+        log.info(String.format("Technology %s created successfully ",technology.getName()));
         return technology;
     }
 
@@ -33,6 +34,7 @@ public class TechnologyServiceImpl implements TechnologyService {
         technologyRepository.findById(id)
                 .ifPresentOrElse(technologyFind->{
                     technologyRepository.delete(technologyFind);
+                    log.info("Technology deleted successfully");
                 },()->{
                     log.error(ID_NOT_FOUND+id);
                     throw new EntityNotFoundException(ID_NOT_FOUND+id);
@@ -56,6 +58,7 @@ public class TechnologyServiceImpl implements TechnologyService {
                     if(technology.getName() != null && !technology.getName().isBlank()) technologyFind.setName(technology.getName());
                     if(technology.getVersion() != null && !technology.getVersion().isBlank()) technologyFind.setVersion(technology.getVersion());
                     technologyRepository.save(technologyFind);
+                    log.info(String.format("Technology %s updated successfully ",technologyFind.getName()));
                 },()->{
                     log.error(ID_NOT_FOUND+id);
                     throw new EntityNotFoundException(ID_NOT_FOUND+id);

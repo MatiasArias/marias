@@ -20,5 +20,5 @@ public class Candidate {
     private String lastname;
     private DocumentTypeEnum documentType;
     private Integer documentNumber;
-    private Date birthday;
+    private Date birthdate;
 }
