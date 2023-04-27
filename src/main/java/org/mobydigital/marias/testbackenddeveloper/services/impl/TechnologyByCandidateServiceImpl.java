@@ -1,6 +1,6 @@
 package org.mobydigital.marias.testbackenddeveloper.services.impl;
 
-import lombok.Setter;
+import jakarta.persistence.EntityNotFoundException;
 import lombok.extern.slf4j.Slf4j;
 import org.mobydigital.marias.testbackenddeveloper.models.entities.TechnologyByCandidate;
 import org.mobydigital.marias.testbackenddeveloper.repositories.TechnologyByCandidateRepository;
@@ -16,30 +16,54 @@ import java.util.stream.Collectors;
 public class TechnologyByCandidateServiceImpl implements TechnologyByCandidateService {
     @Autowired
     TechnologyByCandidateRepository technologyByCandidateRepository;
+    private final String ID_NOT_FOUND = "Technology by Candidate not found -  id:";
     @Override
     public TechnologyByCandidate createTechnologyByCandidate(TechnologyByCandidate technologyByCandidate) {
-        return null;
+        technologyByCandidateRepository.save(technologyByCandidate);
+        return technologyByCandidate;
     }
 
     @Override
-    public List<TechnologyByCandidate> findAll(Long idCandidato) {
+    public List<TechnologyByCandidate> findAll(Long idCandidate) {
         return technologyByCandidateRepository.findAll().stream()
-                .filter(technologyByCandidate -> technologyByCandidate.getCandidate().getIdCandidate()==(idCandidato))
+                .filter(technologyByCandidate -> technologyByCandidate.getCandidate().getIdCandidate()==(idCandidate))
                 .collect(Collectors.toList());
     }
 
     @Override
     public void deleteTechnologyByCandidate(Long id) {
-
+        technologyByCandidateRepository.findById(id)
+                .ifPresentOrElse(technologyFind->{
+                    technologyByCandidateRepository.delete(technologyFind);
+                },()->{
+                    log.error(ID_NOT_FOUND+id);
+                    throw new EntityNotFoundException(ID_NOT_FOUND+id);
+                });
     }
 
     @Override
     public TechnologyByCandidate getTechnologyById(Long id) {
-        return null;
+        return technologyByCandidateRepository.findById(id).orElseThrow(
+                ()->{
+                    log.error(ID_NOT_FOUND+id);
+                    throw new EntityNotFoundException();
+                }
+        );
     }
 
     @Override
     public void updateTechnologyByCandidate(Long id, TechnologyByCandidate technologyByCandidate) {
-
+        technologyByCandidateRepository.findById(id)
+                .ifPresentOrElse(technologyFind -> {
+                    if(technologyByCandidate.getTechnology() != null) technologyFind.setTechnology(technologyByCandidate.getTechnology());
+                    if(technologyByCandidate.getCandidate() != null ) technologyFind.setCandidate(technologyByCandidate.getCandidate());
+                    if(technologyByCandidate.getYearsOfExperience() !=null && technologyByCandidate.getYearsOfExperience()>=0){
+                        technologyFind.setYearsOfExperience(technologyByCandidate.getYearsOfExperience());
+                    }
+                    technologyByCandidateRepository.save(technologyFind);
+                },()->{
+                    log.error(ID_NOT_FOUND+id);
+                    throw new EntityNotFoundException(ID_NOT_FOUND+id);
+                });
     }
 }
