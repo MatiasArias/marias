@@ -1,6 +1,7 @@
 package org.mobydigital.marias.testbackenddeveloper.controllers;
 
 import org.mobydigital.marias.testbackenddeveloper.models.entities.Technology;
+import org.mobydigital.marias.testbackenddeveloper.models.views.TechnologyByCandidateDto;
 import org.mobydigital.marias.testbackenddeveloper.services.TechnologyByCandidateService;
 import org.mobydigital.marias.testbackenddeveloper.models.entities.TechnologyByCandidate;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,13 +27,13 @@ public class TechnologyByCandidateController {
     }
     
     @PostMapping("/create")
-    public ResponseEntity<TechnologyByCandidate> createTechnologyByCandidate(@RequestBody TechnologyByCandidate technologyByCandidate){
-       return new ResponseEntity<>(technologyByCandidateService.createTechnologyByCandidate(technologyByCandidate),HttpStatus.OK);
+    public ResponseEntity<TechnologyByCandidate> createTechnologyByCandidate(@RequestBody TechnologyByCandidateDto technologyByCandidateDto){
+       return new ResponseEntity<>(technologyByCandidateService.createTechnologyByCandidate(technologyByCandidateDto),HttpStatus.OK);
     }
 
     @PutMapping("/update/{idTechnologyByCandidate}")
-    public ResponseEntity updateTechnologyByCandidate(@PathVariable("idTechnologyByCandidate") Long id, @RequestBody TechnologyByCandidate technologyByCandidate){
-        technologyByCandidateService.updateTechnologyByCandidate(id,technologyByCandidate);
+    public ResponseEntity updateTechnologyByCandidate(@PathVariable("idTechnologyByCandidate") Long id, @RequestBody TechnologyByCandidateDto technologyByCandidateDto){
+        technologyByCandidateService.updateTechnologyByCandidate(id,technologyByCandidateDto);
         return new ResponseEntity(HttpStatus.OK);
     }
 
