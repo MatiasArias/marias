@@ -21,7 +21,7 @@ public class CandidateServiceImpl implements CandidateService {
 
     @Override
     public List<Candidate> findAll() {
-        return null;
+        return candidateRepository.findAll();
     }
 
     @Override
