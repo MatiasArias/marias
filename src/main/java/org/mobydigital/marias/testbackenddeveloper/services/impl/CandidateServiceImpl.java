@@ -9,10 +9,6 @@ import org.mobydigital.marias.testbackenddeveloper.repositories.CandidateReposit
 import org.mobydigital.marias.testbackenddeveloper.services.CandidateService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.yaml.snakeyaml.events.Event;
-
-import java.sql.SQLOutput;
-import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 @Service

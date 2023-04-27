@@ -1,6 +1,5 @@
 package org.mobydigital.marias.testbackenddeveloper.controllers;
 
-import org.mobydigital.marias.testbackenddeveloper.models.entities.Technology;
 import org.mobydigital.marias.testbackenddeveloper.models.views.TechnologyByCandidateDto;
 import org.mobydigital.marias.testbackenddeveloper.services.TechnologyByCandidateService;
 import org.mobydigital.marias.testbackenddeveloper.models.entities.TechnologyByCandidate;
