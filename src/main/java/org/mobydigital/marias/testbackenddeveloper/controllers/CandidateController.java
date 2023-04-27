@@ -30,13 +30,13 @@ public class CandidateController {
     }
 
     @DeleteMapping("/delete/{id}")
-    public ResponseEntity<Candidate> deleteCandidate(@PathVariable("id") Long id){
+    public ResponseEntity<Object> deleteCandidate(@PathVariable("id") Long id){
         candidateService.deleteCandidate(id);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 
     @PutMapping("/update/{id}")
-    public ResponseEntity<Candidate> updateCandidate(@PathVariable Long id, @RequestBody Candidate candidate){
+    public ResponseEntity<Object> updateCandidate(@PathVariable Long id, @RequestBody Candidate candidate){
         candidateService.updateCandidate(id,candidate);
         return new ResponseEntity<>(HttpStatus.OK);
     }

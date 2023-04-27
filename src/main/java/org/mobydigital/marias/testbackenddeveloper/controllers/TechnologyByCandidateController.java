@@ -1,6 +1,5 @@
 package org.mobydigital.marias.testbackenddeveloper.controllers;
 
-import org.mobydigital.marias.testbackenddeveloper.models.entities.Technology;
 import org.mobydigital.marias.testbackenddeveloper.models.views.TechnologyByCandidateDto;
 import org.mobydigital.marias.testbackenddeveloper.services.TechnologyByCandidateService;
 import org.mobydigital.marias.testbackenddeveloper.models.entities.TechnologyByCandidate;
@@ -32,14 +31,14 @@ public class TechnologyByCandidateController {
     }
 
     @PutMapping("/update/{idTechnologyByCandidate}")
-    public ResponseEntity updateTechnologyByCandidate(@PathVariable("idTechnologyByCandidate") Long id, @RequestBody TechnologyByCandidateDto technologyByCandidateDto){
+    public ResponseEntity<Object> updateTechnologyByCandidate(@PathVariable("idTechnologyByCandidate") Long id, @RequestBody TechnologyByCandidateDto technologyByCandidateDto){
         technologyByCandidateService.updateTechnologyByCandidate(id,technologyByCandidateDto);
-        return new ResponseEntity(HttpStatus.OK);
+        return new ResponseEntity<>(HttpStatus.OK);
     }
 
     @DeleteMapping("/delete/{idTechnologyByCandidate}")
-    public ResponseEntity deleteTechnologyByCandidate(@PathVariable("idTechnologyByCandidate") Long id){
+    public ResponseEntity<Object> deleteTechnologyByCandidate(@PathVariable("idTechnologyByCandidate") Long id){
         technologyByCandidateService.deleteTechnologyByCandidate(id);
-        return new ResponseEntity(HttpStatus.NO_CONTENT);
+        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 }
