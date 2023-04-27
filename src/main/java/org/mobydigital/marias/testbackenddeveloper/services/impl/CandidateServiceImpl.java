@@ -1,11 +1,13 @@
 package org.mobydigital.marias.testbackenddeveloper.services.impl;
 
+import jakarta.persistence.EntityNotFoundException;
 import lombok.extern.slf4j.Slf4j;
 import org.mobydigital.marias.testbackenddeveloper.models.entities.Candidate;
 import org.mobydigital.marias.testbackenddeveloper.repositories.CandidateRepository;
 import org.mobydigital.marias.testbackenddeveloper.services.CandidateService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.yaml.snakeyaml.events.Event;
 
 import java.util.List;
 @Service
@@ -14,9 +16,12 @@ public class CandidateServiceImpl implements CandidateService {
     @Autowired
     private CandidateRepository candidateRepository;
 
+    private final String ID_NOT_FOUND = "Candidate not found -  id:";
+
     @Override
     public Candidate createCandidate(Candidate candidate) {
-        return null;
+        candidateRepository.save(candidate);
+        return candidate;
     }
 
     @Override
@@ -26,16 +31,34 @@ public class CandidateServiceImpl implements CandidateService {
 
     @Override
     public void deleteCandidate(Long id) {
-
+        candidateRepository.findById(id)
+                .ifPresentOrElse(candidateFind->{
+                    candidateRepository.delete(candidateFind);
+                },()->{
+                    log.error(ID_NOT_FOUND+id);
+                    throw new EntityNotFoundException(ID_NOT_FOUND+id);
+                });
     }
 
     @Override
     public Candidate getCandidateById(Long id) {
-        return null;
+        return candidateRepository.findById(id)
+                .orElseThrow(
+                        ()->{
+                        log.error(ID_NOT_FOUND+id);
+                        throw new EntityNotFoundException(ID_NOT_FOUND + id);
+                        }
+                );
     }
 
     @Override
     public void updateCandidate(Long id, Candidate candidate) {
-
+        candidateRepository.findById(id)
+                .ifPresentOrElse(candidateFind->{
+            candidateRepository.save(candidateFind);
+        },()->{
+            log.error(ID_NOT_FOUND+id);
+            throw new EntityNotFoundException(ID_NOT_FOUND+id);
+        });
     }
 }
