@@ -66,4 +66,5 @@ public class TechnologyByCandidateServiceImpl implements TechnologyByCandidateSe
                     throw new EntityNotFoundException(ID_NOT_FOUND+id);
                 });
     }
+
 }
