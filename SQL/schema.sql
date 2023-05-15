@@ -48,3 +48,35 @@ INTO customer_sales;
 RETURN customer_sales;
 END $$
 DELIMITER ;
+
+DELIMITER $$
+CREATE PROCEDURE `guardar_datos_cliente`(
+dni_p VARCHAR(9),
+first_name_p VARCHAR(50),
+last_name_p VARCHAR(50),
+phone_number_p VARCHAR(15),
+registration_date_p DATE
+)
+BEGIN 	
+  DECLARE listo BOOLEAN DEFAULT FALSE;
+  DECLARE saved BOOLEAN DEFAULT FALSE;
+  DECLARE dni_cursor integer;
+  DECLARE c1 CURSOR FOR SELECT dni FROM customers;
+  DECLARE CONTINUE HANDLER FOR SQLSTATE '02000' SET listo=TRUE;
+  OPEN c1;
+  c1_loop:LOOP
+  FETCH c1 INTO dni_cursor;
+   IF dni_cursor=dni_p then
+	UPDATE customers SET first_name=first_name_p,last_name=last_name_p,phone_number=phone_number_p,registration_date=registration_date_p WHERE dni=dni_p;
+	SET saved= TRUE;
+    END IF;
+  IF listo=TRUE THEN 
+	IF saved=FALSE THEN
+		INSERT INTO customers(dni,first_name,last_name,phone_number,registration_date) VALUES (dni_p,first_name_p,last_name_p,phone_number_p,registration_date_p);
+    END IF;
+    LEAVE c1_loop;
+    END IF;
+END LOOP c1_loop;
+CLOSE c1;
+END $$
+DELIMITER ;

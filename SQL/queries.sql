@@ -17,3 +17,5 @@ ORDER BY i.name ASC;
 
 SELECT ventas_cliente('33445566') "Ventas cliente"; 
 
+call guardar_datos_cliente('25335999','Maria','Benitez','0342-154139913','2022-12-18');
+call guardar_datos_cliente('43132313','Matias','Arias','0342-154266141','2018-12-09');
