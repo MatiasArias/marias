@@ -85,7 +85,25 @@ DELIMITER $$
 CREATE PROCEDURE `clientes_que_superan`(
 cantidad_ventas INT
 )
-BEGIN 	
-	SELECT * FROM customers c where ventas_cliente(c.dni)>cantidad_ventas;
+BEGIN
+	DECLARE listo BOOLEAN DEFAULT FALSE;
+	DECLARE dni_p VARCHAR(9);
+	DECLARE first_name_p VARCHAR(50);
+	DECLARE last_name_p VARCHAR(50);
+	DECLARE phone_number_p VARCHAR(15);
+	DECLARE registration_date_p DATE;
+    DECLARE c1 CURSOR FOR SELECT * FROM customers c where ventas_cliente(c.dni)>cantidad_ventas;
+    DECLARE CONTINUE HANDLER FOR SQLSTATE '02000' SET listo=TRUE;
+    OPEN c1;
+     c1_loop:LOOP
+		FETCH c1 INTO dni_p,first_name_p,last_name_p,phone_number_p,registration_date_p;
+        IF listo=TRUE THEN
+			LEAVE c1_loop;
+		END IF;
+        INSERT INTO clientes(dni,first_name,last_name,phone_number,registration_date) VALUES (dni_p,first_name_p,last_name_p,phone_number_p,registration_date_p);
+	END LOOP c1_loop;
+CLOSE c1;
 END $$
 DELIMITER ;
+
+
