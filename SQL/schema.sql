@@ -80,3 +80,12 @@ END LOOP c1_loop;
 CLOSE c1;
 END $$
 DELIMITER ;
+
+DELIMITER $$
+CREATE PROCEDURE `clientes_que_superan`(
+cantidad_ventas INT
+)
+BEGIN 	
+	SELECT * FROM customers c where ventas_cliente(c.dni)>cantidad_ventas;
+END $$
+DELIMITER ;
