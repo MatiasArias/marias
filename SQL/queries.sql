@@ -14,3 +14,6 @@ FROM sales s
 INNER JOIN items i ON (s.id_item = i.item_code) 
 GROUP BY i.name
 ORDER BY i.name ASC;
+
+SELECT ventas_cliente('33445566') "Ventas cliente"; 
+
