@@ -11,12 +11,12 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/candidate/{id}/technology")
+@RequestMapping("/candidateTechnology")
 public class TechnologyByCandidateController {
     @Autowired
     TechnologyByCandidateService technologyByCandidateService;
 
-    @GetMapping
+    @GetMapping("/{id}")
     public ResponseEntity<List<TechnologyByCandidate>> getTechnologiesByCandidate(@PathVariable("id") Long id){
         return new ResponseEntity<>(technologyByCandidateService.findAll(id), HttpStatus.OK);
     }
