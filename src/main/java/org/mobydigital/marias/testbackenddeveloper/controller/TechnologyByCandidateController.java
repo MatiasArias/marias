@@ -1,8 +1,8 @@
-package org.mobydigital.marias.testbackenddeveloper.controllers;
+package org.mobydigital.marias.testbackenddeveloper.controller;
 
-import org.mobydigital.marias.testbackenddeveloper.models.views.TechnologyByCandidateDto;
-import org.mobydigital.marias.testbackenddeveloper.services.TechnologyByCandidateService;
-import org.mobydigital.marias.testbackenddeveloper.models.entities.TechnologyByCandidate;
+import org.mobydigital.marias.testbackenddeveloper.model.view.TechnologyByCandidateDto;
+import org.mobydigital.marias.testbackenddeveloper.service.TechnologyByCandidateService;
+import org.mobydigital.marias.testbackenddeveloper.model.entity.TechnologyByCandidate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

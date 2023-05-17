@@ -1,4 +1,4 @@
-package org.mobydigital.marias.testbackenddeveloper.models.entities;
+package org.mobydigital.marias.testbackenddeveloper.model.entity;
 
 import jakarta.persistence.*;
 import lombok.*;

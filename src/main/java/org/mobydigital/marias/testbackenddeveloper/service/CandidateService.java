@@ -1,6 +1,6 @@
-package org.mobydigital.marias.testbackenddeveloper.services;
+package org.mobydigital.marias.testbackenddeveloper.service;
 
-import org.mobydigital.marias.testbackenddeveloper.models.entities.Candidate;
+import org.mobydigital.marias.testbackenddeveloper.model.entity.Candidate;
 
 import java.util.List;
 

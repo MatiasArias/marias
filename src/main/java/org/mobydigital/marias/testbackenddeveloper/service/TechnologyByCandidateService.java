@@ -1,7 +1,7 @@
-package org.mobydigital.marias.testbackenddeveloper.services;
+package org.mobydigital.marias.testbackenddeveloper.service;
 
-import org.mobydigital.marias.testbackenddeveloper.models.entities.TechnologyByCandidate;
-import org.mobydigital.marias.testbackenddeveloper.models.views.TechnologyByCandidateDto;
+import org.mobydigital.marias.testbackenddeveloper.model.entity.TechnologyByCandidate;
+import org.mobydigital.marias.testbackenddeveloper.model.view.TechnologyByCandidateDto;
 
 import java.util.List;
 

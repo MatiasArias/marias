@@ -1,7 +1,7 @@
-package org.mobydigital.marias.testbackenddeveloper.controllers;
+package org.mobydigital.marias.testbackenddeveloper.controller;
 
-import org.mobydigital.marias.testbackenddeveloper.models.entities.Candidate;
-import org.mobydigital.marias.testbackenddeveloper.services.CandidateService;
+import org.mobydigital.marias.testbackenddeveloper.model.entity.Candidate;
+import org.mobydigital.marias.testbackenddeveloper.service.CandidateService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

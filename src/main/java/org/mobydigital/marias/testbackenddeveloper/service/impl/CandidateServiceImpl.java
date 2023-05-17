@@ -1,12 +1,12 @@
-package org.mobydigital.marias.testbackenddeveloper.services.impl;
+package org.mobydigital.marias.testbackenddeveloper.service.impl;
 
 import jakarta.persistence.EntityNotFoundException;
 import lombok.extern.slf4j.Slf4j;
-import org.mobydigital.marias.testbackenddeveloper.exceptions.InvalidDatatypeException;
-import org.mobydigital.marias.testbackenddeveloper.exceptions.RequiredFieldException;
-import org.mobydigital.marias.testbackenddeveloper.models.entities.Candidate;
-import org.mobydigital.marias.testbackenddeveloper.repositories.CandidateRepository;
-import org.mobydigital.marias.testbackenddeveloper.services.CandidateService;
+import org.mobydigital.marias.testbackenddeveloper.exception.InvalidDatatypeException;
+import org.mobydigital.marias.testbackenddeveloper.exception.RequiredFieldException;
+import org.mobydigital.marias.testbackenddeveloper.model.entity.Candidate;
+import org.mobydigital.marias.testbackenddeveloper.repository.CandidateRepository;
+import org.mobydigital.marias.testbackenddeveloper.service.CandidateService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import java.util.Date;

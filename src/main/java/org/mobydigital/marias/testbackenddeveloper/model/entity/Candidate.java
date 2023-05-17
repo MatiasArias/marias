@@ -1,8 +1,8 @@
-package org.mobydigital.marias.testbackenddeveloper.models.entities;
+package org.mobydigital.marias.testbackenddeveloper.model.entity;
 
 import jakarta.persistence.*;
 import lombok.*;
-import org.mobydigital.marias.testbackenddeveloper.models.enums.DocumentTypeEnum;
+import org.mobydigital.marias.testbackenddeveloper.model.enums.DocumentTypeEnum;
 
 import java.util.Date;
 @Entity

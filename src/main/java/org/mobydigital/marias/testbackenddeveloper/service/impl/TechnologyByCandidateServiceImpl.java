@@ -1,13 +1,13 @@
-package org.mobydigital.marias.testbackenddeveloper.services.impl;
+package org.mobydigital.marias.testbackenddeveloper.service.impl;
 
 import jakarta.persistence.EntityNotFoundException;
 import lombok.extern.slf4j.Slf4j;
-import org.mobydigital.marias.testbackenddeveloper.models.entities.TechnologyByCandidate;
-import org.mobydigital.marias.testbackenddeveloper.models.views.TechnologyByCandidateDto;
-import org.mobydigital.marias.testbackenddeveloper.repositories.TechnologyByCandidateRepository;
-import org.mobydigital.marias.testbackenddeveloper.services.CandidateService;
-import org.mobydigital.marias.testbackenddeveloper.services.TechnologyByCandidateService;
-import org.mobydigital.marias.testbackenddeveloper.services.TechnologyService;
+import org.mobydigital.marias.testbackenddeveloper.model.entity.TechnologyByCandidate;
+import org.mobydigital.marias.testbackenddeveloper.model.view.TechnologyByCandidateDto;
+import org.mobydigital.marias.testbackenddeveloper.repository.TechnologyByCandidateRepository;
+import org.mobydigital.marias.testbackenddeveloper.service.CandidateService;
+import org.mobydigital.marias.testbackenddeveloper.service.TechnologyByCandidateService;
+import org.mobydigital.marias.testbackenddeveloper.service.TechnologyService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

@@ -1,4 +1,4 @@
-package org.mobydigital.marias.testbackenddeveloper.models.views;
+package org.mobydigital.marias.testbackenddeveloper.model.view;
 
 import lombok.*;
 
