@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/technologies")
+@RequestMapping("/technology")
 public class TechnologyController {
     @Autowired
     private TechnologyService technologyService;

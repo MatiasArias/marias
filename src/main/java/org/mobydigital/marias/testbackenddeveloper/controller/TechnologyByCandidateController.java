@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/candidates/{id}/technologies")
+@RequestMapping("/candidate/{id}/technology")
 public class TechnologyByCandidateController {
     @Autowired
     TechnologyByCandidateService technologyByCandidateService;
