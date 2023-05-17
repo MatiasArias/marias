@@ -27,7 +27,7 @@ public class TechnologyByCandidateController {
     
     @PostMapping("/create")
     public ResponseEntity<TechnologyByCandidate> createTechnologyByCandidate(@RequestBody TechnologyByCandidateDto technologyByCandidateDto){
-       return new ResponseEntity<>(technologyByCandidateService.createTechnologyByCandidate(technologyByCandidateDto),HttpStatus.OK);
+       return new ResponseEntity<>(technologyByCandidateService.createTechnologyByCandidate(technologyByCandidateDto),HttpStatus.CREATED);
     }
 
     @PutMapping("/update/{idTechnologyByCandidate}")
