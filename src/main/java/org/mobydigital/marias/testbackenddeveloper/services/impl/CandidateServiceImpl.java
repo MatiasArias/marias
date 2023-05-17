@@ -17,7 +17,7 @@ public class CandidateServiceImpl implements CandidateService {
     @Autowired
     private CandidateRepository candidateRepository;
 
-    private final String ID_NOT_FOUND = "Candidate not found -  id:";
+    private static final  String ID_NOT_FOUND = "Candidate not found -  id:";
 
     @Override
     public Candidate createCandidate(Candidate candidate) {

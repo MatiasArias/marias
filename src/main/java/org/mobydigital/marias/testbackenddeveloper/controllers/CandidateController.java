@@ -21,7 +21,7 @@ public class CandidateController {
     }
     @GetMapping(value="/{id}")
     public ResponseEntity<Candidate> getCandidatePorId(@PathVariable("id") Long id){
-        return new ResponseEntity<Candidate>(candidateService.getCandidateById(id),HttpStatus.OK);
+        return new ResponseEntity<>(candidateService.getCandidateById(id),HttpStatus.OK);
     }
 
     @PostMapping("/create")

@@ -13,7 +13,7 @@ import lombok.*;
 public class Technology {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id_technology;
+    private Long idTechnology;
     private String name;
     private String version;
 }
