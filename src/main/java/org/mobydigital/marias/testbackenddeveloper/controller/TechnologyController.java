@@ -31,13 +31,13 @@ public class TechnologyController {
     }
 
     @PutMapping("/update/{id}")
-    public ResponseEntity<Object> updateTechnology(@RequestBody Technology technology, @PathVariable("id") Long id){
+    public ResponseEntity<HttpStatus> updateTechnology(@RequestBody Technology technology, @PathVariable("id") Long id){
         technologyService.updateTechnology(id,technology);
         return new ResponseEntity<>(HttpStatus.OK);
     }
 
     @DeleteMapping("/delete/{id}")
-    public ResponseEntity<Object> deleteTechnology(@PathVariable("id") Long id){
+    public ResponseEntity<HttpStatus> deleteTechnology(@PathVariable("id") Long id){
         technologyService.deleteTechnology(id);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
