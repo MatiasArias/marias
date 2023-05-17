@@ -8,6 +8,7 @@ import org.mobydigital.marias.testbackenddeveloper.repository.TechnologyByCandid
 import org.mobydigital.marias.testbackenddeveloper.service.CandidateService;
 import org.mobydigital.marias.testbackenddeveloper.service.TechnologyByCandidateService;
 import org.mobydigital.marias.testbackenddeveloper.service.TechnologyService;
+import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -26,12 +27,11 @@ public class TechnologyByCandidateServiceImpl implements TechnologyByCandidateSe
     @Autowired
     CandidateService candidateService;
     private final String ID_NOT_FOUND = "Technology by Candidate not found -  id:";
+
+    private final ModelMapper mapper = new ModelMapper();
     @Override
     public TechnologyByCandidate createTechnologyByCandidate(TechnologyByCandidateDto technologyByCandidateDto) {
-        TechnologyByCandidate technologyByCandidate= new TechnologyByCandidate();
-        technologyByCandidate.setCandidate(candidateService.getCandidateById(technologyByCandidateDto.getIdCandidate()));
-        technologyByCandidate.setTechnology(technologyService.getTechnologyById(technologyByCandidateDto.getIdTechnology()));
-        technologyByCandidate.setYearsOfExperience(technologyByCandidateDto.getYearsOfExperience());
+        TechnologyByCandidate technologyByCandidate = mapper.map(technologyByCandidateDto, TechnologyByCandidate.class);
         technologyByCandidateRepository.save(technologyByCandidate);
         log.info(String.format("Technology by Candidate created successfully"));
         return technologyByCandidate;
@@ -70,15 +70,7 @@ public class TechnologyByCandidateServiceImpl implements TechnologyByCandidateSe
     public void updateTechnologyByCandidate(Long id, TechnologyByCandidateDto technologyByCandidate) {
         technologyByCandidateRepository.findById(id)
                 .ifPresentOrElse(technologyFind -> {
-                    if(technologyByCandidate.getIdTechnology() != null) {
-                        technologyFind.setTechnology(technologyService.getTechnologyById(technologyByCandidate.getIdTechnology()));
-                    }
-                    if(technologyByCandidate.getIdCandidate() != null ) {
-                        technologyFind.setCandidate(candidateService.getCandidateById(technologyByCandidate.getIdCandidate()));
-                    }
-                    if(technologyByCandidate.getYearsOfExperience() !=null && technologyByCandidate.getYearsOfExperience()>=0){
-                        technologyFind.setYearsOfExperience(technologyByCandidate.getYearsOfExperience());
-                    }
+                    technologyFind = mapper.map(technologyByCandidate, TechnologyByCandidate.class);
                     technologyByCandidateRepository.save(technologyFind);
                     log.info(String.format("Technology by Candidate created successfully"));
                 },()->{
