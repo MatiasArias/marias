@@ -1,6 +1,9 @@
 package org.mobydigital.marias.testbackenddeveloper.model.entity;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotEmpty;
+import jakarta.validation.constraints.NotNull;
 import lombok.*;
 import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
@@ -25,5 +28,6 @@ public class TechnologyByCandidate {
     @OnDelete(action = OnDeleteAction.CASCADE)
     @JoinColumn(name = "id_technology")
     private Technology technology;
+    @NotEmpty(message = "Years of experience is mandatory")
     private Integer yearsOfExperience;
 }
