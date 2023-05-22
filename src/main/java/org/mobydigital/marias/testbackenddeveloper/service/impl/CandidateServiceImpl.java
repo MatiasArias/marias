@@ -37,9 +37,8 @@ public class CandidateServiceImpl implements CandidateService {
     public List<CandidateDto> findAll() {
         return candidateRepository.findAll().stream()
                 .map(
-                candidate -> {CandidateDto candidateDto = modelMapper.map(candidate,CandidateDto.class);
-                    return  candidateDto;})
-                .collect(Collectors.toList());
+                candidate -> modelMapper.map(candidate,CandidateDto.class))
+                .toList();
     }
 
     @Override

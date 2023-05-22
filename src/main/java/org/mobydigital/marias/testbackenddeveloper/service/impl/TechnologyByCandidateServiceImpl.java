@@ -31,7 +31,7 @@ public class TechnologyByCandidateServiceImpl implements TechnologyByCandidateSe
 
     @Autowired
     CandidateRepository candidateRepository;
-    private final String ID_NOT_FOUND = "Technology by Candidate not found -  id:";
+    private static final String ID_NOT_FOUND = "Technology by Candidate not found -  id:";
 
     private final ModelMapper modelMapper = new ModelMapper();
     @Override
@@ -59,7 +59,7 @@ public class TechnologyByCandidateServiceImpl implements TechnologyByCandidateSe
         return technologyByCandidateRepository.findAll().stream()
                 .filter(technologyByCandidate -> technologyByCandidate.getCandidate().getIdCandidate()==(idCandidate))
                 .map(technologyByCandidate -> modelMapper.map(technologyByCandidate, TechnologyByCandidateDto.class))
-                .collect(Collectors.toList());
+                .toList();
     }
 
     @Override
@@ -92,7 +92,7 @@ public class TechnologyByCandidateServiceImpl implements TechnologyByCandidateSe
                 .ifPresentOrElse(technologyFind -> {
                     technologyFind = modelMapper.map(technologyByCandidateDto, TechnologyByCandidate.class);
                     technologyByCandidateRepository.save(technologyFind);
-                    log.info(String.format("Technology by Candidate created successfully"));
+                    log.info("Technology by Candidate created successfully");
                 },()->{
                     log.error(ID_NOT_FOUND+id);
                     throw new EntityNotFoundException(ID_NOT_FOUND+id);

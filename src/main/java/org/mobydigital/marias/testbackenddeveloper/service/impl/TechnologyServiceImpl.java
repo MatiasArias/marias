@@ -20,7 +20,7 @@ public class TechnologyServiceImpl implements TechnologyService {
     @Autowired
     private TechnologyRepository technologyRepository;
 
-    private final String ID_NOT_FOUND = "Technology not found -  id:";
+    private static final String ID_NOT_FOUND = "Technology not found -  id:";
     private final ModelMapper modelMapper = new ModelMapper();
 
     @Override
@@ -34,11 +34,8 @@ public class TechnologyServiceImpl implements TechnologyService {
     @Override
     public List<TechnologyDto> findAll() {
         return technologyRepository.findAll().stream().map(
-                technology ->{
-                    TechnologyDto technologyDto = modelMapper.map(technology,TechnologyDto.class);
-                    return technologyDto;
-                }
-        ).collect(Collectors.toList());
+                technology -> modelMapper.map(technology,TechnologyDto.class)
+        ).toList();
     }
 
     @Override
