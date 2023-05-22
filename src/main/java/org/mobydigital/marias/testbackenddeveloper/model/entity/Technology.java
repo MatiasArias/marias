@@ -6,12 +6,11 @@ import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.Getter;
-import lombok.Data;
+
 
 
 @Entity
 @Table(name="technology")
-@Data
 @AllArgsConstructor
 @NoArgsConstructor
 @Getter

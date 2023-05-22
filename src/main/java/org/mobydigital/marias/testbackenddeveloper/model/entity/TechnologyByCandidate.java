@@ -8,7 +8,6 @@ import org.hibernate.annotations.OnDeleteAction;
 
 @Entity
 @Table(name="technology_by_candidate")
-@Data
 @AllArgsConstructor
 @NoArgsConstructor
 @Getter

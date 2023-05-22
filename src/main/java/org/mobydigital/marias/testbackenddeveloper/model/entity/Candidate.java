@@ -12,13 +12,11 @@ import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.Getter;
-import lombok.Data;
 import org.mobydigital.marias.testbackenddeveloper.model.enums.DocumentTypeEnum;
 
 import java.util.Date;
 @Entity
 @Table(name="candidate")
-@Data
 @AllArgsConstructor
 @NoArgsConstructor
 @Getter
