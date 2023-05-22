@@ -7,6 +7,7 @@ import jakarta.persistence.Id;
 import jakarta.persistence.Column;
 import jakarta.persistence.GenerationType;
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
@@ -33,12 +34,9 @@ public class Candidate {
     @NotBlank(message = "Lastname is mandatory")
     private String lastname;
     @Column(name = "document_type")
-    @NotNull(message = "Document type is mandatory")
     private DocumentTypeEnum documentType;
     @Column(name = "document_number")
-    @NotBlank(message = "Document is mandatory")
     private Integer documentNumber;
     @Column(name = "birthdate")
-    @NotBlank(message = "Birthdate is mandatory")
     private Date birthdate;
 }

@@ -1,6 +1,6 @@
 package org.mobydigital.marias.testbackenddeveloper.controller;
 
-import org.mobydigital.marias.testbackenddeveloper.model.entity.Candidate;
+import org.mobydigital.marias.testbackenddeveloper.model.view.CandidateDto;
 import org.mobydigital.marias.testbackenddeveloper.service.CandidateService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -24,16 +24,16 @@ public class CandidateController {
     private CandidateService candidateService;
 
     @GetMapping
-    public ResponseEntity<List<Candidate>> getCandidates(){
+    public ResponseEntity<List<CandidateDto>> getCandidates(){
         return new ResponseEntity<>(candidateService.findAll(), HttpStatus.OK);
     }
     @GetMapping(value="/{id}")
-    public ResponseEntity<Candidate> getCandidatePorId(@PathVariable("id") Long id){
+    public ResponseEntity<CandidateDto> getCandidatePorId(@PathVariable("id") Long id){
         return new ResponseEntity<>(candidateService.getCandidateById(id),HttpStatus.OK);
     }
 
     @PostMapping("/create")
-    public ResponseEntity<Candidate> saveCandidate(@RequestBody Candidate candidate){
+    public ResponseEntity<CandidateDto> saveCandidate(@RequestBody CandidateDto candidate){
         return new ResponseEntity<>(candidateService.createCandidate(candidate),HttpStatus.CREATED);
     }
 
@@ -44,7 +44,7 @@ public class CandidateController {
     }
 
     @PutMapping("/update/{id}")
-    public ResponseEntity<HttpStatus> updateCandidate(@PathVariable Long id, @RequestBody Candidate candidate){
+    public ResponseEntity<HttpStatus> updateCandidate(@PathVariable Long id, @RequestBody CandidateDto candidate){
         candidateService.updateCandidate(id,candidate);
         return new ResponseEntity<>(HttpStatus.OK);
     }
