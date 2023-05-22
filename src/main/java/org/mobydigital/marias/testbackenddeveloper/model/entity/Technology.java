@@ -19,9 +19,12 @@ import lombok.Data;
 public class Technology {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id_technology")
     private Long idTechnology;
+    @Column(name = "name")
     @NotBlank(message = "Name is mandatory")
     private String name;
+    @Column(name = "version")
     @NotBlank(message = "Version is mandatory")
     private String version;
 }
