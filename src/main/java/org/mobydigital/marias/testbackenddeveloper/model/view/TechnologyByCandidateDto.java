@@ -1,6 +1,11 @@
 package org.mobydigital.marias.testbackenddeveloper.model.view;
 
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+import lombok.Getter;
+import lombok.Data;
+
 
 @Data
 @AllArgsConstructor

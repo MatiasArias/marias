@@ -1,8 +1,17 @@
 package org.mobydigital.marias.testbackenddeveloper.model.entity;
 
-import jakarta.persistence.*;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.Table;
+import jakarta.persistence.Id;
+import jakarta.persistence.GenerationType;
 import jakarta.validation.constraints.NotBlank;
-import lombok.*;
+import jakarta.validation.constraints.NotNull;
+import lombok.AllArgsConstructor;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+import lombok.Getter;
+import lombok.Data;
 import org.mobydigital.marias.testbackenddeveloper.model.enums.DocumentTypeEnum;
 
 import java.util.Date;
@@ -21,7 +30,7 @@ public class Candidate {
     private String name;
     @NotBlank(message = "Lastname is mandatory")
     private String lastname;
-    @NotBlank(message = "Email is mandatory")
+    @NotNull(message = "Document type is mandatory")
     private DocumentTypeEnum documentType;
     @NotBlank(message = "Document is mandatory")
     private Integer documentNumber;

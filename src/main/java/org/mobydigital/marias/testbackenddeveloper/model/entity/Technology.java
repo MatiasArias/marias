@@ -2,7 +2,12 @@ package org.mobydigital.marias.testbackenddeveloper.model.entity;
 
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+import lombok.Getter;
+import lombok.Data;
+
 
 @Entity
 @Table(name="technology")
