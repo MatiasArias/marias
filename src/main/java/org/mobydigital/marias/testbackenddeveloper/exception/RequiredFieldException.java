@@ -1,4 +1,4 @@
-package org.mobydigital.marias.testbackenddeveloper.exceptions;
+package org.mobydigital.marias.testbackenddeveloper.exception;
 public class RequiredFieldException extends RuntimeException{
     public RequiredFieldException(String message) {
         super(message);
