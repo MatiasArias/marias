@@ -27,7 +27,7 @@ public class TechnologyByCandidateController {
     public ResponseEntity<List<TechnologyByCandidateDto>> getTechnologiesByCandidate(@PathVariable("id") Long id){
         return new ResponseEntity<>(technologyByCandidateService.findAll(id), HttpStatus.OK);
     }
-    @GetMapping("/{idTechnologyByCandidate}")
+    @GetMapping("/id/{idTechnologyByCandidate}")
     public ResponseEntity<TechnologyByCandidateDto> getTechnologiesByCandidateById(@PathVariable("idTechnologyByCandidate") Long id){
         return new ResponseEntity<>(technologyByCandidateService.getTechnologyById(id), HttpStatus.OK);
     }
