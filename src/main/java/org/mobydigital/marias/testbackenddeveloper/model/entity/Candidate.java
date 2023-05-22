@@ -6,9 +6,7 @@ import jakarta.persistence.Table;
 import jakarta.persistence.Id;
 import jakarta.persistence.Column;
 import jakarta.persistence.GenerationType;
-import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.NotEmpty;
-import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.*;
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -36,7 +34,9 @@ public class Candidate {
     @Column(name = "document_type")
     private DocumentTypeEnum documentType;
     @Column(name = "document_number")
+    @Min(value = 1000000,message = "document number is mandatory")
     private Integer documentNumber;
     @Column(name = "birthdate")
+    @Past
     private Date birthdate;
 }
