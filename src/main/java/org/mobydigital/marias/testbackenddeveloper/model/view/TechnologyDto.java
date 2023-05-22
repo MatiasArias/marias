@@ -4,7 +4,6 @@ import lombok.Data;
 
 @Data
 public class TechnologyDto {
-    private Long idTechnology;
     private String name;
     private String version;
 }

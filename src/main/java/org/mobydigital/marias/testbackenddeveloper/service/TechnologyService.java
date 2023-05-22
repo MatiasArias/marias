@@ -1,13 +1,13 @@
 package org.mobydigital.marias.testbackenddeveloper.service;
 
-import org.mobydigital.marias.testbackenddeveloper.model.entity.Technology;
+import org.mobydigital.marias.testbackenddeveloper.model.view.TechnologyDto;
 
 import java.util.List;
 
 public interface TechnologyService {
-    Technology createTechnology(Technology technology);
-    List<Technology> findAll();
+    TechnologyDto createTechnology(TechnologyDto technology);
+    List<TechnologyDto> findAll();
     void deleteTechnology(Long id);
-    Technology getTechnologyById(Long id);
-    void updateTechnology(Long id, Technology technology);
+    TechnologyDto getTechnologyById(Long id);
+    void updateTechnology(Long id, TechnologyDto technology);
 }

@@ -7,7 +7,6 @@ import java.util.Date;
 @Data
 public class CandidateDto {
 
-    private long idCandidate;
     private String name;
     private String lastname;
     private DocumentTypeEnum documentType;
