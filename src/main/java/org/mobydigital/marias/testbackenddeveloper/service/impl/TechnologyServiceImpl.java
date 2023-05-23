@@ -11,7 +11,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.stream.Collectors;
 
 @Service
 @Slf4j
@@ -65,9 +64,7 @@ public class TechnologyServiceImpl implements TechnologyService {
     public void updateTechnology(Long id, TechnologyDto technology) {
         technologyRepository.findById(id)
                 .ifPresentOrElse(technologyFind -> {
-                    if(technology.getName() != null && !technology.getName().isBlank()) technologyFind.setName(technology.getName());
-                    if(technology.getVersion() != null && !technology.getVersion().isBlank()) technologyFind.setVersion(technology.getVersion());
-                    technologyRepository.save(technologyFind);
+                    technologyRepository.save(modelMapper.map(technologyFind,Technology.class));
                     log.info(String.format("Technology %s updated successfully ",technologyFind.getName()));
                 },()->{
                     log.error(ID_NOT_FOUND+id);
