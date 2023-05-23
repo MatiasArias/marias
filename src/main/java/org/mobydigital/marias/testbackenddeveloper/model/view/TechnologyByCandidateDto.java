@@ -1,13 +1,12 @@
-package org.mobydigital.marias.testbackenddeveloper.models.views;
+package org.mobydigital.marias.testbackenddeveloper.model.view;
 
-import lombok.*;
+
+import lombok.Data;
+
 
 @Data
-@AllArgsConstructor
-@NoArgsConstructor
-@Getter
-@Setter
 public class TechnologyByCandidateDto {
+    private Long id;
     private Long idCandidate;
     private Long idTechnology;
     private Integer yearsOfExperience;
