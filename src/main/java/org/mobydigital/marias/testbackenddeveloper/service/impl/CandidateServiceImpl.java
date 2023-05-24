@@ -22,6 +22,9 @@ public class CandidateServiceImpl implements CandidateService {
     private CandidateRepository candidateRepository;
     private final ModelMapper modelMapper = new ModelMapper();
     private static final  String ID_NOT_FOUND = "Candidate not found -  id:";
+    private static final  String INVALID_BIRTHDAY = "Invalid candidate birthday";
+    private static final  String INVALID_DOCUMENT = "Invalid candidate document number";
+    private static final  String INCOMPLETE_DATA = "Incomplete candidate data";
 
     @Override
     public CandidateDto createCandidate(CandidateDto candidateDto) {
@@ -48,7 +51,7 @@ public class CandidateServiceImpl implements CandidateService {
                     candidateRepository.delete(candidateFind);
                     log.info("Candidate deleted successfully");
                 },()->{
-                    log.error(ID_NOT_FOUND+id);
+                    log.error(ID_NOT_FOUND+id,new EntityNotFoundException(ID_NOT_FOUND+id));
                     throw new EntityNotFoundException(ID_NOT_FOUND+id);
                 });
     }
@@ -58,7 +61,7 @@ public class CandidateServiceImpl implements CandidateService {
         return candidateRepository.findById(id)
                 .map(candidate -> modelMapper.map(candidate, CandidateDto.class))
                 .orElseThrow(() -> {
-                    log.error(ID_NOT_FOUND + id);
+                    log.error(ID_NOT_FOUND+id,new EntityNotFoundException(ID_NOT_FOUND+id));
                     throw new EntityNotFoundException(ID_NOT_FOUND+id);
                 });
     }
@@ -70,8 +73,8 @@ public class CandidateServiceImpl implements CandidateService {
             candidateRepository.save(modelMapper.map(candidateFind, Candidate.class));
             log.info(String.format("Candidate %s updated successfully ",candidateFind.getName()));
         },()->{
-            log.error(ID_NOT_FOUND+id);
-            throw new EntityNotFoundException(ID_NOT_FOUND+id);
+                    log.error(ID_NOT_FOUND+id,new EntityNotFoundException(ID_NOT_FOUND+id));
+                    throw new EntityNotFoundException(ID_NOT_FOUND+id);
         });
     }
 
@@ -81,16 +84,16 @@ public class CandidateServiceImpl implements CandidateService {
                 candidate.getDocumentNumber()==null ||
                 candidate.getDocumentType()==null ||
                 candidate.getBirthdate()==null){
-            log.error("Incomplete candidate data");
-            throw new RequiredFieldException("Incomplete candidate data");
+            log.error(INCOMPLETE_DATA, new RequiredFieldException(INCOMPLETE_DATA));
+            throw new RequiredFieldException(INCOMPLETE_DATA);
         }
         if(candidate.getBirthdate().after(new Date())){
-            log.error("Invalid candidate birthday");
-            throw new InvalidDatatypeException("Invalid candidate birthday");
+            log.error(INVALID_BIRTHDAY, new InvalidDatatypeException(INVALID_BIRTHDAY));
+            throw new InvalidDatatypeException(INVALID_BIRTHDAY);
         }
         if(candidate.getDocumentNumber()<0){
-            log.error("Invalid candidate document number");
-            throw new InvalidDatatypeException("Invalid candidate document number");
+            log.error(INVALID_DOCUMENT, new InvalidDatatypeException(INVALID_DOCUMENT));
+            throw new InvalidDatatypeException(INVALID_DOCUMENT);
         }
         if(candidate.getIdCandidate()>0) {
             log.error("Invalid candidate id");
