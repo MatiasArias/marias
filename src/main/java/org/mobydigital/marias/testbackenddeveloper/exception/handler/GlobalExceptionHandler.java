@@ -13,7 +13,6 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.client.HttpClientErrorException;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
-
 @ControllerAdvice
 public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
     @ExceptionHandler(InvalidDatatypeException.class)
@@ -30,13 +29,12 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
     }
     @ResponseStatus(HttpStatus.BAD_REQUEST)
     @ExceptionHandler({
-            org.springframework.web.HttpRequestMethodNotSupportedException.class,
-            org.springframework.web.bind.MethodArgumentNotValidException.class,
-            org.springframework.http.converter.HttpMessageConversionException.class
+            org.springframework.http.converter.HttpMessageConversionException.class,
+            jakarta.validation.ConstraintViolationException.class
     })
     @ResponseBody
     public ErrorMessage handleBadRequest(HttpServletRequest request,Exception exception){
-        return new ErrorMessage(request.getRequestURI(),exception);
+        return new ErrorMessage(exception.getMessage());
     }
     @ResponseStatus(HttpStatus.FORBIDDEN)
     @ExceptionHandler({
@@ -46,12 +44,12 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
     public ErrorMessage handleForbidden(HttpServletRequest request,Exception exception){
         return new ErrorMessage(request.getRequestURI(),exception);
     }
-
-    @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
-    @ExceptionHandler({Exception.class})
+    @ResponseStatus(HttpStatus.NOT_FOUND)
+    @ExceptionHandler({
+            jakarta.persistence.EntityNotFoundException.class
+    })
     @ResponseBody
-    public ErrorMessage handleUnexpectedException(HttpServletRequest request,Exception exception){
-        return new ErrorMessage(request.getRequestURI(),exception);
+    public ErrorMessage handleEntityNotFound(Exception exception){
+        return new ErrorMessage(exception.getMessage());
     }
-
 }
