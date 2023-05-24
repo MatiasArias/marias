@@ -33,7 +33,7 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
             jakarta.validation.ConstraintViolationException.class
     })
     @ResponseBody
-    public ErrorMessage handleBadRequest(HttpServletRequest request,Exception exception){
+    public ErrorMessage handleBadRequest(Exception exception){
         return new ErrorMessage(exception.getMessage());
     }
     @ResponseStatus(HttpStatus.FORBIDDEN)
@@ -41,8 +41,8 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
             HttpClientErrorException.Forbidden.class
     })
     @ResponseBody
-    public ErrorMessage handleForbidden(HttpServletRequest request,Exception exception){
-        return new ErrorMessage(request.getRequestURI(),exception);
+    public ErrorMessage handleForbidden(Exception exception){
+        return new ErrorMessage(exception.getMessage());
     }
     @ResponseStatus(HttpStatus.NOT_FOUND)
     @ExceptionHandler({
