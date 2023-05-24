@@ -54,8 +54,8 @@ public class TechnologyServiceImpl implements TechnologyService {
         return technologyRepository.findById(id).map(technology -> modelMapper.map(technology,TechnologyDto.class))
                 .orElseThrow(
                 ()->{
-                    log.error(ID_NOT_FOUND+id);
-                    throw new EntityNotFoundException();
+                    log.error(ID_NOT_FOUND+id,new EntityNotFoundException(ID_NOT_FOUND+id));
+                    throw new EntityNotFoundException(ID_NOT_FOUND+id);
                 }
         );
     }
