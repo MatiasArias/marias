@@ -1,5 +1,6 @@
 package org.mobydigital.marias.testbackenddeveloper.service;
 
+import org.mobydigital.marias.testbackenddeveloper.model.projection.TechnologyByCandidateView;
 import org.mobydigital.marias.testbackenddeveloper.model.view.TechnologyByCandidateDto;
 
 import java.util.List;
@@ -10,4 +11,5 @@ public interface TechnologyByCandidateService {
     void deleteTechnologyByCandidate(Long id);
     TechnologyByCandidateDto getTechnologyById(Long id);
     void updateTechnologyByCandidate(Long id, TechnologyByCandidateDto technologyByCandidateDto);
+    List<TechnologyByCandidateView> getCandidatesByTechnology(String technologyName);
 }

@@ -2,6 +2,7 @@ package org.mobydigital.marias.testbackenddeveloper.controller;
 
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
+import org.mobydigital.marias.testbackenddeveloper.model.projection.TechnologyByCandidateView;
 import org.mobydigital.marias.testbackenddeveloper.model.view.TechnologyByCandidateDto;
 import org.mobydigital.marias.testbackenddeveloper.service.TechnologyByCandidateService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,6 +16,7 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestParam;
 
 
 import java.util.List;
@@ -35,6 +37,11 @@ public class TechnologyByCandidateController {
     @Operation(summary = "getTechnologyById")
     public ResponseEntity<TechnologyByCandidateDto> getTechnologiesByCandidateById(@PathVariable("idTechnologyByCandidate") Long id){
         return new ResponseEntity<>(technologyByCandidateService.getTechnologyById(id), HttpStatus.OK);
+    }
+    @GetMapping("/candidatesByTechnology")
+    @Operation(summary = "getCandidatesByTechnology")
+    public ResponseEntity<List<TechnologyByCandidateView>> getCandidatesByTechnology(@RequestParam String technologyName){
+        return new ResponseEntity<>(technologyByCandidateService.getCandidatesByTechnology(technologyName), HttpStatus.OK);
     }
     
     @PostMapping("/create")
