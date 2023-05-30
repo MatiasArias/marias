@@ -88,13 +88,15 @@ INSERT INTO Technology(id_technology,name,version) values (5,'Lombok','3.0.5');
 INSERT INTO Technology(id_technology,name,version) values (6,'Git','3.0.5');
 INSERT INTO Technology(id_technology,name,version) values (7,'GitFlow','3.0.5');
 INSERT INTO Technology(id_technology,name,version) values (8,'Docker','3.0.5');
-INSERT INTO Technology_By_Candidate(id,id_candidate,id_technology,years_of_experience) VALUES (1,1,4,2)
-INSERT INTO Technology_By_Candidate(id,id_candidate,id_technology,years_of_experience) VALUES (2,1,5,2)
-INSERT INTO Technology_By_Candidate(id,id_candidate,id_technology,years_of_experience) VALUES (3,2,1,2)
-INSERT INTO Technology_By_Candidate(id,id_candidate,id_technology,years_of_experience) VALUES (4,2,2,2)
-INSERT INTO Technology_By_Candidate(id,id_candidate,id_technology,years_of_experience) VALUES (5,3,7,2)
-INSERT INTO Technology_By_Candidate(id,id_candidate,id_technology,years_of_experience) VALUES (6,3,8,2)
-INSERT INTO Technology_By_Candidate(id,id_candidate,id_technology,years_of_experience) VALUES (7,1,3,2)
+INSERT INTO Technology(id_technology,name,version) values (9,'Java','19');
+INSERT INTO Technology_By_Candidate(id_technology_by_candidate,id_candidate,id_technology,years_of_experience) VALUES (1,1,4,2);
+INSERT INTO Technology_By_Candidate(id_technology_by_candidate,id_candidate,id_technology,years_of_experience) VALUES (2,1,5,2);
+INSERT INTO Technology_By_Candidate(id_technology_by_candidate,id_candidate,id_technology,years_of_experience) VALUES (3,2,1,2);
+INSERT INTO Technology_By_Candidate(id_technology_by_candidate,id_candidate,id_technology,years_of_experience) VALUES (4,2,2,2);
+INSERT INTO Technology_By_Candidate(id_technology_by_candidate,id_candidate,id_technology,years_of_experience) VALUES (5,3,7,2);
+INSERT INTO Technology_By_Candidate(id_technology_by_candidate,id_candidate,id_technology,years_of_experience) VALUES (6,3,8,2);
+INSERT INTO Technology_By_Candidate(id_technology_by_candidate,id_candidate,id_technology,years_of_experience) VALUES (7,1,3,2);
+INSERT INTO Technology_By_Candidate(id_technology_by_candidate,id_candidate,id_technology,years_of_experience) VALUES (8,1,9,3);
 ```
 
 4. Dale al boton **Run** y se cargarán los datos en memoria.

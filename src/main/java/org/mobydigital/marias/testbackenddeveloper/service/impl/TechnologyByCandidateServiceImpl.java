@@ -5,6 +5,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.mobydigital.marias.testbackenddeveloper.model.entity.Candidate;
 import org.mobydigital.marias.testbackenddeveloper.model.entity.Technology;
 import org.mobydigital.marias.testbackenddeveloper.model.entity.TechnologyByCandidate;
+import org.mobydigital.marias.testbackenddeveloper.model.projection.TechnologyByCandidateView;
 import org.mobydigital.marias.testbackenddeveloper.model.view.CandidateDto;
 import org.mobydigital.marias.testbackenddeveloper.model.view.TechnologyByCandidateDto;
 import org.mobydigital.marias.testbackenddeveloper.repository.CandidateRepository;
@@ -100,6 +101,11 @@ public class TechnologyByCandidateServiceImpl implements TechnologyByCandidateSe
                     log.error(ID_NOT_FOUND+id,new EntityNotFoundException(ID_NOT_FOUND+id));
                     throw new EntityNotFoundException(ID_NOT_FOUND+id);
                 });
+    }
+
+    @Override
+    public List<TechnologyByCandidateView> getCandidatesByTechnology(String technologyName) {
+        return technologyByCandidateRepository.getCandidatesByTechnology(technologyName);
     }
 
 }
