@@ -14,7 +14,7 @@ public class SwaggerConfig {
                 .info(new Info()
                         .title("Test Backend Developer - Matias Arias")
                         .version("0.11")
-                        .description("MobyDigital")
+                        .description("Test Backend Developer Api")
                         .termsOfService("http://swagger.io/terms/")
                         .license(new License().name("Apache 2.0").url("http://springdoc.org")));
     }
