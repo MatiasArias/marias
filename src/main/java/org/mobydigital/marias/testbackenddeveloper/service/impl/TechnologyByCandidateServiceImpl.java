@@ -105,7 +105,6 @@ public class TechnologyByCandidateServiceImpl implements TechnologyByCandidateSe
 
     @Override
     public List<TechnologyByCandidateView> getCandidatesByTechnology(String technologyName) {
-        System.out.println(technologyByCandidateRepository.getCandidatesByTechnology(technologyName).get(0).getYearsOfExperience());
         return technologyByCandidateRepository.getCandidatesByTechnology(technologyName);
     }
 

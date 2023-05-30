@@ -13,7 +13,7 @@ public interface TechnologyByCandidateRepository extends JpaRepository<Technolog
             "FROM TechnologyByCandidate tc " +
             "INNER JOIN tc.candidate " +
             "INNER JOIN tc.technology t " +
-            "WHERE t.name = :technologyName")
+            "WHERE CONCAT(t.name,' ',t.version) LIKE CONCAT('%',:technologyName,'%') ")
     List<TechnologyByCandidateView> getCandidatesByTechnology(@Param("technologyName") String technologyName);
 
 }
