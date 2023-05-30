@@ -44,7 +44,7 @@ public class TechnologyServiceImpl implements TechnologyService {
                     technologyRepository.delete(technologyFind);
                     log.info("Technology deleted successfully");
                 },()->{
-                    log.error(ID_NOT_FOUND+id);
+                    log.error(ID_NOT_FOUND+id,new EntityNotFoundException(ID_NOT_FOUND+id));
                     throw new EntityNotFoundException(ID_NOT_FOUND+id);
                 });
     }
@@ -54,8 +54,8 @@ public class TechnologyServiceImpl implements TechnologyService {
         return technologyRepository.findById(id).map(technology -> modelMapper.map(technology,TechnologyDto.class))
                 .orElseThrow(
                 ()->{
-                    log.error(ID_NOT_FOUND+id);
-                    throw new EntityNotFoundException();
+                    log.error(ID_NOT_FOUND+id,new EntityNotFoundException(ID_NOT_FOUND+id));
+                    throw new EntityNotFoundException(ID_NOT_FOUND+id);
                 }
         );
     }
@@ -67,7 +67,7 @@ public class TechnologyServiceImpl implements TechnologyService {
                     technologyRepository.save(modelMapper.map(technologyFind,Technology.class));
                     log.info(String.format("Technology %s updated successfully ",technologyFind.getName()));
                 },()->{
-                    log.error(ID_NOT_FOUND+id);
+                    log.error(ID_NOT_FOUND+id,new EntityNotFoundException(ID_NOT_FOUND+id));
                     throw new EntityNotFoundException(ID_NOT_FOUND+id);
                 });
     }

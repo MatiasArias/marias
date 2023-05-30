@@ -32,6 +32,7 @@ public class Candidate {
     @NotBlank(message = "Lastname is mandatory")
     private String lastname;
     @Column(name = "document_type")
+    @NotNull
     private DocumentTypeEnum documentType;
     @Column(name = "document_number")
     @Min(value = 1000000,message = "document number is mandatory")

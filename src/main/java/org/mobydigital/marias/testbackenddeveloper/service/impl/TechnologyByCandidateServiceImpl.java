@@ -32,19 +32,22 @@ public class TechnologyByCandidateServiceImpl implements TechnologyByCandidateSe
     @Autowired
     CandidateRepository candidateRepository;
     private static final String ID_NOT_FOUND = "Technology by Candidate not found -  id:";
+    private static final String ID_TECHNOLOGY_NOT_FOUND = "Technology not found - id:";
+    private static final String ID_CANDIDATE_NOT_FOUND = "Candidate not found - id:";
+
 
     private final ModelMapper modelMapper = new ModelMapper();
     @Override
     public TechnologyByCandidateDto createTechnologyByCandidate(TechnologyByCandidateDto technologyByCandidateDto) {
         Candidate candidate = candidateRepository.findById(technologyByCandidateDto.getIdCandidate()).orElseThrow(
                 ()->{
-                    log.error("Candidate not found - id:");
-                    throw new EntityNotFoundException();
+                    log.error(ID_CANDIDATE_NOT_FOUND+ technologyByCandidateDto.getIdCandidate(), new EntityNotFoundException(ID_CANDIDATE_NOT_FOUND));
+                    throw new EntityNotFoundException(ID_CANDIDATE_NOT_FOUND);
                 });
         Technology technology = technologyRepository.findById(technologyByCandidateDto.getIdTechnology()).orElseThrow(
                 ()->{
-                    log.error("Technology not found - id:");
-                    throw new EntityNotFoundException();
+                    log.error(ID_TECHNOLOGY_NOT_FOUND+technologyByCandidateDto.getIdTechnology(), new EntityNotFoundException(ID_TECHNOLOGY_NOT_FOUND));
+                    throw new EntityNotFoundException(ID_TECHNOLOGY_NOT_FOUND);
                 });
         TechnologyByCandidate technologyByCandidate = modelMapper.map(technologyByCandidateDto, TechnologyByCandidate.class);
         technologyByCandidate.setCandidate(candidate);
@@ -69,7 +72,7 @@ public class TechnologyByCandidateServiceImpl implements TechnologyByCandidateSe
                     technologyByCandidateRepository.delete(technologyFind);
                     log.info("Technology by Candidate deleted successfully");
                 },()->{
-                    log.error(ID_NOT_FOUND+id);
+                    log.error(ID_NOT_FOUND+id,new EntityNotFoundException(ID_NOT_FOUND+id));
                     throw new EntityNotFoundException(ID_NOT_FOUND+id);
                 });
     }
@@ -80,8 +83,8 @@ public class TechnologyByCandidateServiceImpl implements TechnologyByCandidateSe
                 .map(technologyByCandidate -> modelMapper.map(technologyByCandidate, TechnologyByCandidateDto.class))
                 .orElseThrow(
                 ()->{
-                    log.error(ID_NOT_FOUND+id);
-                    throw new EntityNotFoundException();
+                    log.error(ID_NOT_FOUND+id,new EntityNotFoundException(ID_NOT_FOUND+id));
+                    throw new EntityNotFoundException(ID_NOT_FOUND+id);
                 }
         );
     }
@@ -94,7 +97,7 @@ public class TechnologyByCandidateServiceImpl implements TechnologyByCandidateSe
                     technologyByCandidateRepository.save(technologyFind);
                     log.info("Technology by Candidate created successfully");
                 },()->{
-                    log.error(ID_NOT_FOUND+id);
+                    log.error(ID_NOT_FOUND+id,new EntityNotFoundException(ID_NOT_FOUND+id));
                     throw new EntityNotFoundException(ID_NOT_FOUND+id);
                 });
     }
