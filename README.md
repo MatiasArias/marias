@@ -23,19 +23,24 @@ Para resolver lo enunciado anteriormente deberás implementar…
 
 ## Resolución
 
-Para la resolución de este trabajo utilicé los conocimientos adquiridos en este primer mes de Academy que fueron los siguientes:
+Para la resolución de este trabajo utilicé los conocimientos adquiridos en Academy que fueron los siguientes:
 
 * Springboot
 * JPA
 * Git & Gitflow
 * Lombok
 * H2
+* JUnit
+* Mockito
+* Spring Security
+* JWT
 
 Manejé la siguiente estructura de objetos:
 
 * Candidate
 * Technology
 * TechnologyByCandidate
+* Users
 
 ### Primeros pasos
 
@@ -124,3 +129,39 @@ INSERT INTO Technology_By_Candidate(id_technology_by_candidate,id_candidate,id_t
     "yearsOfExperience":2
 }
 ```
+
+## Spring security
+
+Para podes comprobar la funcionalidad de seguridad de la aplicación son importantes los siguientes endpoint:
+* http://localhost:8080/signup
+* http://localhost:8080/login
+
+En donde uno te permitirá registrarte como usuario y el otro te permitirá hacer uso de la api. 
+El unico incoveniente es que una vez registrado y logueado deberás de hacer uso de Bearer Auth para hacer uso de la api en su totalidad.
+
+La estructura que debes seguir es la siguiente:
+* Para el **Sign up** :
+```
+   {
+    "username":"marias",
+    "email":"marias@mobydigital",
+    "password":"moby"
+    }
+```
+* Para el login
+```
+{
+    "username":"gcastro",
+    "password":"gaston123"
+}
+```
+
+Al loguearte, la respuesta te enviará un Bearer Token en su header. Para los demás endpoints podras hacer uso de la api al autenticarte con Bearer Token
+
+En los header al loguearte encontrarás lo siguiente:
+
+| Key | Value |
+|-----|-------|
+|   Authorization  |    Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJnY2FzdHJvIiwiZXhwIjoxNjg4MTM3ODYyLCJlbWFpbCI6ImdjYXN0cm9AbW9ieWRpZ2l0YWwifQ.zvwkTv8JL9DFXgDnLXcYnbck3jfjnwBLKBHz9EwRorHSu07ei3jiMqNGYpI09bRochJ4USJlCVvcsvzyFFkqlA   |
+
+Por lo que deberás hacer uso del token (Ignorando el "Bearer ")
